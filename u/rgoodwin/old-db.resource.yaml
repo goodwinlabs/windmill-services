@@ -1,0 +1,9 @@
+description: Old MySQL server from when I started my homelab
+value:
+  database: pokemon
+  host: 192.168.0.60
+  password: '$var:u/rgoodwin/old-db'
+  port: 3306
+  ssl: ''
+  user: remote
+resource_type: mysql

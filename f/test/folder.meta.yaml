@@ -1,0 +1,5 @@
+display_name: test
+extra_perms:
+  u/rgoodwin: false
+owners:
+  - u/rgoodwin

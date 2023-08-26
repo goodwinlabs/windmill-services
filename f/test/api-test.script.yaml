@@ -1,0 +1,10 @@
+summary: Testing how to call this script via the API
+description: ''
+lock: []
+is_template: false
+kind: script
+schema:
+  $schema: 'https://json-schema.org/draft/2020-12/schema'
+  type: object
+  properties: {}
+  required: []

@@ -1,0 +1,11 @@
+description: Minio Test Bucket
+value:
+  accessKey: rgoodwin-windmill
+  bucket: windmill
+  endPoint: 192.168.0.2
+  pathStyle: false
+  port: 9000
+  region: home
+  secretKey: '$var:u/rgoodwin/minio_secret_key'
+  useSSL: false
+resource_type: s3

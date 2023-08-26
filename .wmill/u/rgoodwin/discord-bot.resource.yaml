@@ -1,0 +1,5 @@
+description: Test Discord Bot
+value:
+  application_id: '1134689005213077524'
+  public_key: 5e398c2bbe9f8932f7ae7fe1fa55b9ae820b49b845efbd5d2d7fd59dbb18bba6
+resource_type: discord_bot_configuration
