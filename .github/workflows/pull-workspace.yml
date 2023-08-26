@@ -8,6 +8,7 @@ jobs:
   sync-dev:
     environment: windmill-dev
     runs-on: self-hosted
+    if: ${{ github.ref == 'refs/heads/dev' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
