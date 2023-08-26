@@ -1,0 +1,25 @@
+name: 'Push branch to windmill workspace'
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'prod'
+
+jobs:
+
+  sync-prod:
+    environment: windmill-prod
+    runs-on: self-hosted
+    if: ${{ github.ref == 'refs/heads/prod' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: prod
+
+      - uses: ./.github/actions/push-windmill-workspace
+        with:
+          branch: prod
+          wmill-workspace: ${{ vars.WMILL_WORKSPACE }}
+          wmill-url: ${{ vars.WMILL_URL }}
+          wmill-token: ${{ secrets.WMILL_TOKEN }}

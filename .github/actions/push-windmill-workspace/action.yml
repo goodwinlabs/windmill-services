@@ -1,0 +1,38 @@
+name: Push to Windmill Workspace
+description: Pushs to Windmill Workspace
+inputs:
+  branch:
+    description: environment
+    required: true
+  wmill-workspace:
+    description: workspace id
+    required: true
+  wmill-url:
+    description: instance URL
+    required: true
+  wmill-token:
+    description: API Token
+    required: true
+
+
+runs:
+  using: composite
+  steps:
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
+        with:
+          deno-version: vx.x.x
+
+      # (push will pull first to detect conflicts and only push actual changes)
+      - name: Sync with Windmill
+        shell: bash
+        run: |
+          deno run --unstable -A  https://deno.land/x/wmill@v1.104.0/main.ts workspace add __automation ${{ inputs.wmill-workspace }} ${{ inputs.wmill-url }} --token ${{ inputs.wmill-token }}
+          deno run --unstable -A  https://deno.land/x/wmill@v1.104.0/main.ts sync push --yes --fail-conflicts
+
+      # autocommit the new .wmill state after the push
+      - name: Commit Windmill state
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update windmill state
+          branch: ${{ inputs.branch }}

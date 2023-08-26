@@ -1,0 +1,22 @@
+name: 'Pull Windmill workspace into branch'
+on:
+  workflow_dispatch:
+  schedule:
+   - cron:  '0 * * * *'
+
+jobs:
+  sync-dev:
+    environment: windmill-dev
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: dev
+
+      - uses: ./.github/actions/pull-windmill-workspace
+        with:
+          branch: dev
+          wmill-workspace: ${{ vars.WMILL_WORKSPACE }}
+          wmill-url: ${{ vars.WMILL_URL }}
+          wmill-token: ${{ secrets.WMILL_TOKEN }}
